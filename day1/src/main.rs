@@ -207,7 +207,7 @@ fn main() {
     // PART 1:
     //  1) find the 2 numbers that sum to 2020
     //  2) multiply those numbers
-    if let [&a, &b] = (
+    if let [a, b] = (
         input
         .iter()
         .combinations(2)
@@ -219,7 +219,7 @@ fn main() {
 
     // PART 2:
     //  1) find 3 numbers that follow the same criteria as part 1
-    if let [&a, &b, &c] = (
+    if let [a, b, c] = (
         input
         .iter()
         .combinations(3)
