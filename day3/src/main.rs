@@ -2,11 +2,7 @@ fn main() {
     let hill = {
         let input = include_str!("input.txt");
         let cols = input.find('\n').unwrap();
-        let trees: Vec<bool> = input
-            .replace('\n', "")
-            .chars()
-            .map(|c| c == '#')
-            .collect();
+        let trees: Vec<bool> = input.replace('\n', "").chars().map(|c| c == '#').collect();
         let rows = trees.len() / cols;
         Hill {
             size: (cols, rows),
@@ -14,19 +10,16 @@ fn main() {
         }
     };
 
-    let slopes = [
-        (1, 1),
-        (3, 1),
-        (5, 1),
-        (7, 1),
-        (1, 2)
-    ];
+    let slopes = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)];
 
-    let result: usize = slopes.iter().map(|s| {
-        let count = hill.count_trees(*s);
-        println!("slope ({},{}) = {} trees", s.0, s.1, count);
-        count
-    }).product();
+    let result: usize = slopes
+        .iter()
+        .map(|s| {
+            let count = hill.count_trees(*s);
+            println!("slope ({},{}) = {} trees", s.0, s.1, count);
+            count
+        })
+        .product();
 
     println!("product of tree counts: {}", result);
 }
@@ -44,8 +37,10 @@ impl Hill {
         Slope {
             pos: (0, 0),
             size: self.size,
-            slope
-        }.filter(|t| self.has_tree(t)).count()
+            slope,
+        }
+        .filter(|t| self.has_tree(t))
+        .count()
     }
 }
 

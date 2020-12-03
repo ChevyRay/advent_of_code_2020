@@ -20,11 +20,14 @@ fn main() {
     //  of times a given letter must appear for the password to be
     //  valid. For example, 1-3 a means that the password must
     //  contain a at least 1 time and at most 3 times.
-    let valid_passwords: usize = lines.iter().filter(|line| {
-        let (min, max, letter, password) = split_line(line);
-        let letter_count = password.chars().filter(|c| c == &letter).count();
-        letter_count >= min && letter_count <= max
-    }).count();
+    let valid_passwords: usize = lines
+        .iter()
+        .filter(|line| {
+            let (min, max, letter, password) = split_line(line);
+            let letter_count = password.chars().filter(|c| c == &letter).count();
+            letter_count >= min && letter_count <= max
+        })
+        .count();
     println!("{}", valid_passwords);
 
     // PART 2)
@@ -34,11 +37,14 @@ fn main() {
     //  concept of "index zero"!) Exactly one of these positions must
     //  contain the given letter. Other occurrences of the letter are
     //  irrelevant for the purposes of policy enforcement.
-    let valid_passwords: usize = lines.iter().filter(|line| {
-        let (a, b, letter, password) = split_line(line);
-        let chars: Vec<char> = password.chars().collect();
-        let (a, b) = (chars[a - 1], (chars[b - 1]));
-        (a == letter || b == letter) && (a == letter) != (b == letter)
-    }).count();
+    let valid_passwords: usize = lines
+        .iter()
+        .filter(|line| {
+            let (a, b, letter, password) = split_line(line);
+            let chars: Vec<char> = password.chars().collect();
+            let (a, b) = (chars[a - 1], (chars[b - 1]));
+            (a == letter || b == letter) && (a == letter) != (b == letter)
+        })
+        .count();
     println!("{}", valid_passwords);
 }
