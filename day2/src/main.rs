@@ -1,13 +1,13 @@
 // line format: "[min]-[max] [letter]: [password]"
-fn split_line(line: &str) -> (usize, usize, char, &str) {
+fn split_line(line: &str) -> Option<(usize, usize, char, &str)> {
     let mut line_split = line.split(' ');
-    let nums = line_split.next().unwrap();
-    let letter = line_split.next().unwrap().chars().next().unwrap();
-    let password = line_split.next().unwrap();
+    let nums = line_split.next()?;
+    let letter = line_split.next()?.chars().next()?;
+    let password = line_split.next()?;
     let mut nums_split = nums.split('-');
-    let min = nums_split.next().unwrap().parse().unwrap();
-    let max = nums_split.next().unwrap().parse().unwrap();
-    (min, max, letter, password)
+    let min = nums_split.next()?.parse().ok()?;
+    let max = nums_split.next()?.parse().ok()?;
+    Some((min, max, letter, password))
 }
 
 fn main() {
@@ -23,7 +23,7 @@ fn main() {
     let valid_passwords: usize = lines
         .iter()
         .filter(|line| {
-            let (min, max, letter, password) = split_line(line);
+            let (min, max, letter, password) = split_line(line).unwrap();
             let letter_count = password.chars().filter(|c| c == &letter).count();
             letter_count >= min && letter_count <= max
         })
@@ -40,7 +40,7 @@ fn main() {
     let valid_passwords: usize = lines
         .iter()
         .filter(|line| {
-            let (a, b, letter, password) = split_line(line);
+            let (a, b, letter, password) = split_line(line).unwrap();
             let chars: Vec<char> = password.chars().collect();
             let (a, b) = (chars[a - 1], (chars[b - 1]));
             (a == letter || b == letter) && (a == letter) != (b == letter)
