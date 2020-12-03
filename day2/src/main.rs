@@ -1,5 +1,5 @@
 // line format: "[min]-[max] [letter]: [password]"
-fn split_line<'a>(line: &'a str) -> (usize, usize, char, &'a str) {
+fn split_line(line: &str) -> (usize, usize, char, &str) {
     let mut line_split = line.split(' ');
     let nums = line_split.next().unwrap();
     let letter = line_split.next().unwrap().chars().next().unwrap();
