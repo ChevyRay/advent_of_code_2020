@@ -5,14 +5,14 @@ fn split_line<'a>(line: &'a str) -> (usize, usize, char, &'a str) {
     let letter = line_split.next().unwrap().chars().next().unwrap();
     let password = line_split.next().unwrap();
     let mut nums_split = nums.split('-');
-    let min = nums_split.next().unwrap().parse::<usize>().unwrap();
-    let max = nums_split.next().unwrap().parse::<usize>().unwrap();
+    let min = nums_split.next().unwrap().parse().unwrap();
+    let max = nums_split.next().unwrap().parse().unwrap();
     (min, max, letter, password)
 }
 
 fn main() {
     let input = include_str!("input.txt");
-    let lines: Vec<&str> = input.split('\n').collect();
+    let lines: Vec<&str> = input.lines().collect();
 
     // PART 1)
     //  Each line gives the password policy and then the password.
