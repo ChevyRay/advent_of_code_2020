@@ -70,7 +70,7 @@ fn main() {
                     "cid" => (false, false),
                     _ => (false, false),
                 })
-                .map(|(a, b)| (if a { 1 } else { 0 }, if b { 1 } else { 0 }))
+                .map(|(a, b)| (a as usize, b as usize))
                 .fold((0, 0), |(na, nb), (a, b)| (na + a, nb + b))
         })
         .collect();
