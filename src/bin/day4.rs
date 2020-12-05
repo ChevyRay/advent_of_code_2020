@@ -1,5 +1,5 @@
 fn main() {
-    let input = include_str!("input.txt");
+    let input = include_str!("day4.txt");
 
     let values: Vec<(usize, usize)> = input
         .split("\n\n")

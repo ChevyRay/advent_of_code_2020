@@ -11,7 +11,7 @@ fn split_line(line: &str) -> Option<(usize, usize, char, &str)> {
 }
 
 fn main() {
-    let input = include_str!("input.txt");
+    let input = include_str!("day2.txt");
     let lines: Vec<&str> = input.lines().collect();
 
     // PART 1)

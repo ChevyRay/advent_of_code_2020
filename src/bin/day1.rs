@@ -1,5 +1,5 @@
 fn main() {
-    let input = include_str!("input.txt");
+    let input = include_str!("day1.txt");
 
     let nums: Vec<usize> = input.lines().map(|line| line.parse().unwrap()).collect();
 

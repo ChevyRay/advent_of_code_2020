@@ -1,5 +1,5 @@
 fn main() {
-    let input = include_str!("input.txt");
+    let input = include_str!("day5.txt");
 
     let mut ids: Vec<usize> = input
         .lines()

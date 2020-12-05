@@ -1,5 +1,5 @@
 fn main() {
-    let input = include_str!("input.txt");
+    let input = include_str!("day3.txt");
     let cols = input.find('\n').unwrap();
     let hill: Vec<usize> = input
         .lines()
