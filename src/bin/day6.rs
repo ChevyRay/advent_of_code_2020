@@ -1,16 +1,12 @@
-use std::collections::HashSet;
-
 fn main() {
     let input = include_str!("day6.txt");
 
     let sum: usize = input
         .split("\n\n")
         .map(|group| {
-            group
-                .replace('\n', "")
-                .chars()
-                .collect::<HashSet<char>>()
-                .len()
+            ('a'..='z')
+                .filter(|chr| group.contains(*chr))
+                .count()
         })
         .sum();
 
