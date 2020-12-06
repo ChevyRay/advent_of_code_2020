@@ -16,11 +16,11 @@ fn main() {
             let (a, b) = (chars[min - 1], (chars[max - 1]));
             (
                 (letter_count >= min && letter_count <= max) as usize,
-                ((a == letter || b == letter) && (a == letter) != (b == letter)) as usize
+                ((a == letter || b == letter) && (a == letter) != (b == letter)) as usize,
             )
         })
-        .fold((0, 0), |(na, nb),(a, b)| (na + a, nb + b));
-    
+        .fold((0, 0), |(na, nb), (a, b)| (na + a, nb + b));
+
     println!("part 1: {}", valid1);
     println!("part 2: {}", valid2);
 }
