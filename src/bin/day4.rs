@@ -7,10 +7,8 @@ fn main() {
             group
                 .replace('\n', " ")
                 .split(' ')
-                .filter_map(|item| {
-                    let mut pair = item.split(':');
-                    Some((pair.next()?, pair.next()?))
-                })
+                .map(|item| item.split(':'))
+                .filter_map(|mut pair| Some((pair.next()?, pair.next()?)))
                 .map(|(key, val)| match key {
                     "byr" => (
                         true,
