@@ -2,10 +2,9 @@ fn main() {
     let input = include_str!("day3.txt");
     let cols = input.find('\n').unwrap();
     let hill: Vec<usize> = input
-        .lines()
-        .map(|line| line.chars())
-        .flatten()
-        .map(|chr| if chr == '.' { 0 } else { 1 })
+        .chars()
+        .filter(|c| !c.is_whitespace())
+        .map(|chr| (chr == '#') as usize)
         .collect();
     let rows = hill.len() / cols;
 
