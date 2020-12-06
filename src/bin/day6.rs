@@ -19,9 +19,9 @@ fn main() {
     let sum: usize = input
         .split("\n\n")
         .map(|group| group.lines().collect::<Vec<&str>>())
-        .map(|lines| {
+        .map(|group| {
             ('a'..='z')
-                .filter(|chr| lines.iter().all(|line| line.contains(*chr)))
+                .filter(|chr| group.iter().all(|line| line.contains(*chr)))
                 .count()
         })
         .sum();
