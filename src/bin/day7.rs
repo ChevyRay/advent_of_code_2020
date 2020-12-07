@@ -6,6 +6,7 @@ type Bags = HashMap<&'static str, Bag>;
 fn main() {
     let input = include_str!("day7.txt");
 
+    // -------- PARSE INPUT --------
     let bags: Bags = input
         .lines()
         .map(|line| line[..line.len() - 1].split(" bags contain "))
@@ -30,19 +31,22 @@ fn main() {
         })
         .collect();
 
+    // ---------- PART 1 ----------
+
     fn can_hold(bags: &Bags, outer: &Bag, inner: &str) -> bool {
         outer.contains_key(inner)
             || outer
                 .keys()
                 .any(|&outer| can_hold(bags, bags.get(outer).unwrap(), inner))
     }
-
     let count: usize = bags
         .values()
         .filter(|bag| can_hold(&bags, bag, "shiny gold"))
         .count();
 
     println!("part 1: {}", count);
+
+    // ---------- PART 2 ---------- 
 
     fn count_inner(bags: &Bags, outer: &Bag) -> usize {
         outer
