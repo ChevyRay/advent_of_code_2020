@@ -11,10 +11,10 @@ fn main() {
 
     let sum: usize = groups
         .iter()
-        .map(|group| group.lines().collect::<Vec<&str>>())
+        .map(|group| group.lines())
         .map(|group| {
             ('a'..='z')
-                .filter(|chr| group.iter().all(|line| line.contains(*chr)))
+                .filter(|chr| group.clone().all(|line| line.contains(*chr)))
                 .count()
         })
         .sum();
