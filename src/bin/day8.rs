@@ -33,15 +33,16 @@ fn main() {
 
     println!("part 1: {}", acc);
 
+
+
     for s in 0..code.len() {
         let prev = code[s].0;
-        let next = match prev {
-            "jmp" => "nop",
-            "nop" => "jmp",
-            _ => "acc",
-        };
-        if next != "acc" {
-            code[s].0 = next;
+        if prev != "acc" {
+            code[s].0 = match prev {
+                "jmp" => "nop",
+                "nop" => "jmp",
+                _ => "acc",
+            };
             let (i, acc) = run_code(&code);
             code[s].0 = prev;
             if i == code.len() {
