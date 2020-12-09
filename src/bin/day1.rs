@@ -6,8 +6,7 @@ fn main() {
     let (a, b) = nums
         .iter()
         .enumerate()
-        .map(|(i, a)| nums[(i + 1)..].iter().map(move |b| (*a, *b)))
-        .flatten()
+        .flat_map(|(i, a)| nums[(i + 1)..].iter().map(move |b| (*a, *b)))
         .find(|(a, b)| a + b == 2020)
         .unwrap();
 
@@ -16,14 +15,12 @@ fn main() {
     let (a, b, c) = nums
         .iter()
         .enumerate()
-        .map(|(i, a)| {
+        .flat_map(|(i, a)| {
             let rest = &nums[(i + 1)..];
             rest.iter()
                 .enumerate()
-                .map(move |(i, b)| rest[(i + 1)..].iter().map(move |c| (*a, *b, *c)))
-                .flatten()
+                .flat_map(move |(i, b)| rest[(i + 1)..].iter().map(move |c| (*a, *b, *c)))
         })
-        .flatten()
         .find(|(a, b, c)| a + b + c == 2020)
         .unwrap();
 
