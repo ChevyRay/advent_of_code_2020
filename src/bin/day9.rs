@@ -21,13 +21,13 @@ fn main() {
     println!("part 1: {}", weakness);
 
     let (i, j) = (0..index - 1)
-        .filter_map(|i| {
+        .find_map(|i| {
             (i..index - 1)
                 .map(|j| (j, nums[i..j].iter().sum::<usize>()))
                 .find(|(_, sum)| sum == weakness)
                 .and_then(|(j, _)| Some((i, j)))
         })
-        .fold((0, 0), |_, x| x);
+        .unwrap();
 
     let min = nums[i..j].iter().min().unwrap();
     let max = nums[i..j].iter().max().unwrap();
